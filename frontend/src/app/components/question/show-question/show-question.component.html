@@ -1,0 +1,23 @@
+<main id="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <br>
+            <h2 class="center">Show Question</h2>
+            <ul>
+                <li>id:{{question.id}} </li>
+                <li>Question: {{question.question}} </li>
+                <li>Type: {{question.type}} </li>
+                <li>True1: {{question.true1}} </li>
+                <li>False1: {{question.false1}} </li>
+                <li>False2: {{question.false2}} </li>
+                <li>False3: {{question.false3}} </li>
+
+            </ul>
+          </div>
+          <a [routerLink]="['/admin/listQuestion']" class="btn btn-primary">Back to List</a>
+        </div>
+      </div>
+    </main>
+      

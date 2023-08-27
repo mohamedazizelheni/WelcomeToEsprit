@@ -1,0 +1,32 @@
+<main id="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <br>
+            <h2 class="center">Update Event</h2>
+            <form #updateForm="ngForm" (ngSubmit)="updateEvent(updateForm)">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="event.name" required minlength="2" #name="ngModel" [class.is-invalid]="name.invalid && name.touched">
+                <span style="color: red;" *ngIf="name.touched && name?.errors?.['required']">name is required</span>
+                <span style="color: red;" *ngIf="name.touched && name?.errors?.['minlength']">name must be at least 2 characters</span>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">date</label>
+                <input type="date" class="form-control" name="date" [(ngModel)]="event.date">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Space</label>
+                <input type="text" class="form-control" name="space" [(ngModel)]="event.space" required minlength="2" #space="ngModel" [class.is-invalid]="space.invalid && space.touched">
+                <span style="color: red;" *ngIf="space.touched && space?.errors?.['required']">space is required</span>
+                <span style="color: red;" *ngIf="space.touched && space?.errors?.['minlength']">space must be at least 2 characters</span>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="updateForm.invalid">Update</button><br><br>
+              <a [routerLink]="['/admin/getEvents']" class="btn btn-primary">Back to List</a>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>

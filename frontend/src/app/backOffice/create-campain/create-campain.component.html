@@ -1,0 +1,40 @@
+<main id="main" class="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center" *ngIf="campaign.id==0 || !campaign.id">Add New Campaign</h2>
+                <h2 class="center" *ngIf="campaign.id!=0 && campaign.id">Update Campaign</h2>
+                <form  #addForm="ngForm" >
+                    <div class="mb-3 ">
+                        <label  class="form-label">Logo</label>
+                        <input type="text" class="form-control mb-3" name="logo" [(ngModel)]="campaign.logo"  required >
+
+                        <label  class="form-label">Name</label>
+                        <input type="text" class="form-control mb-3" name="name" [(ngModel)]="campaign.name"  required >
+
+                        <label  class="form-label">Phone Number</label>
+                        <input type="text" class="form-control mb-3" name="numerotelephonique" [(ngModel)]="campaign.numerotelephonique"  required >
+
+                        <label  class="form-label">Email</label>
+                        <input type="text" class="form-control mb-3" name="email" [(ngModel)]="campaign.email"  required >
+
+                        <label  class="form-label">URL Linkedin</label>
+                        <input type="text" class="form-control mb-3" name="urllinkedin" [(ngModel)]="campaign.urllinkedin"  required >
+
+                        <label  class="form-label">URL Facebook</label>
+                        <input type="text" class="form-control mb-3" name="urlfacbook" [(ngModel)]="campaign.urlfacbook"  required >
+
+                        
+
+                    </div>
+                    <button class="btn btn-primary"   (click)="Create(addForm)" *ngIf="campaign.id==0 || !campaign.id">Save</button><br><br>
+                    <button class="btn btn-primary"   (click)="Update(addForm)" *ngIf="campaign.id!=0 && campaign.id">Update</button><br><br>
+                    <a [routerLink]="['/admin/campaigns']" class="btn btn-primary">Back to List</a>
+          
+                </form>
+            </div>
+        </div>
+    </div>
+    </main>

@@ -1,0 +1,38 @@
+<main id="main" class="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center">Add New Event</h2>
+                <form  #addForm="ngForm"  (ngSubmit)="addEvent(addForm)">
+                    
+                    <div class="mb-3 ">
+                        <label  class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" ngModel  required  minlength="2" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" >
+                        <span style="color: red;"   *ngIf="name.touched && name?.errors?.['required']" >Speciality is required</span>
+                    <span style="color: red;"   *ngIf="name.touched && name?.errors?.['minlength']" >Speciality must be at least 2 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date" [(ngModel)]="dateValue">
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Space</label>
+                        <input type="text" class="form-control"   name="space"  ngModel>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Planning</label>
+                        <input type="file" class="form-control" name="planning" (change)="onPlanningSelect($event)" required #planningInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !planningInput.files?.length">planning is required</span>
+                    </div>
+                    
+                    
+                    <button type="submit"  class="btn btn-primary"  [disabled]="addForm.invalid">Submit</button><br><br>
+                    <a [routerLink]="['/admin/getEvents']" class="btn btn-primary">Back to List</a>
+          
+                </form>
+            </div>
+        </div>
+    </div>
+    </main>

@@ -1,0 +1,22 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2>List of roles</h2>
+                    </div>
+                    <a *ngIf="role=='ADMIN'"  class="btn btn-primary">Add new role</a><br> <br>
+                </div>
+            </div>
+        <div >
+            <ul *ngFor="let role of roleList" class="col-md-4 col-sm-4 col-xs-12">
+                <li>
+                    Role name: {{role.role}}
+                </li>
+            </ul>
+        </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

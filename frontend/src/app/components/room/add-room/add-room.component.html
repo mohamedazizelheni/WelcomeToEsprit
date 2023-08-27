@@ -1,0 +1,41 @@
+<main id="main" class="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center"> Add room</h2>
+                <form  #addForm="ngForm"  (ngSubmit)="addRoom(addForm)">
+                    <div class="mb-3 ">
+                        <label  class="form-label">name</label>
+                        <input type="text" class="form-control" name="name" ngModel  required  minlength="2"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched">
+                        <span style="color: red;"   *ngIf="name.touched && name?.errors?.['required']" >"name" is required</span>
+                        <span style="color: red;"   *ngIf="name.touched && name?.errors?.['minlength']" >"name" must be at least 2 caracteres</span>
+                    </div>  
+                    <div class="mb-3 ">
+                        <label  class="form-label">block</label>
+                        <input type="text" class="form-control" name="block" ngModel  required   #block="ngModel" [class.is-invalid]="block.invalid && block.touched">
+                        <span style="color: red;"   *ngIf="block.touched && block?.errors?.['required']" >block is required</span>
+                    </div>                    
+                    
+                    
+                    <div class="mb-3">
+                        <label class="form-label">image</label>
+                        <div>
+                            <div style="display: flex; align-items:flex-start;">
+                                <input type="file" class="form-control" name="image" (change)="onImageSelect($event)"required  #fileInput>
+                                <span style="color: red;" *ngIf="addForm.submitted && !fileInput.files?.length">image is required</span>
+
+                                <div [hidden]="!fileInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                    <img *ngIf="imageSrc && imageSrc != ''" [src]="imageSrc" alt="Image" class="media-container" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                    <button type="submit" class="btn btn-primary"  [disabled]="addForm.invalid">Submit</button><br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

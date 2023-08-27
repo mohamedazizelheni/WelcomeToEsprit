@@ -1,0 +1,38 @@
+<main id="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center">Show Campaign Details</h2>
+                <table>
+                   
+                    <tr>
+                        <td rowspan="12" style="width:250px"><img class="card-img-top" [src]="campaign.logo" alt="Card image cap"></td>
+                        <td>Name :{{campaign.name}}</td>    
+                    </tr>
+                    <tr>
+                        <td>Phone Number : {{campaign.numerotelephonique}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Email :{{campaign.email}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Url Facbook: {{campaign.urlfacbook}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Url Linkedin : {{campaign.urllinkedin}}</td>
+                        
+                    </tr>
+                   
+
+
+                </table>
+            </div>
+            <a [routerLink]="['/app-campains']" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</main>

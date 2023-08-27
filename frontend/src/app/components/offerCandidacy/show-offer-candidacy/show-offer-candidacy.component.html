@@ -1,0 +1,90 @@
+<main id="main">
+     
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+          <div *ngIf="offerCandidacy" class="col-md-12 col-sm-12 col-xs-12">
+            <br>
+            <h4 class="center">OfferCandidacy information:</h4>
+            
+            <ul>
+              <div style="display: flex">
+              <div style="margin-right: 20px">
+              <li><strong>Reference:</strong> {{offerCandidacy.id}}</li>
+              <li><strong>Candidate:</strong> {{offerCandidacy.user.firstName}} {{offerCandidacy.user.lastName}}</li>
+              <li><strong>Establishment:</strong> {{offerCandidacy.establishment}}</li>
+              <li><strong>Documents:</strong></li>
+              </div>
+
+              <div *ngIf="user && user?.id==interview?.user?.id && offerCandidacy.status!='accepted' && offerCandidacy.status!='rejected'" class="mb-3" style="margin-left: 50px;">
+                <form #s="ngForm" (ngSubmit)="updateOfferCandidacyScore(s)">
+                  <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <input class="form-control" name="r" [(ngModel)]="score" required placeholder="score">
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-outline-warning btn-sm" [disabled]="s.invalid">confirm</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div style="display: flex; align-items: center;">
+                <div *ngIf="offerCandidacy.status" [style.background-color]="getStatusColor(offerCandidacy.status)" style="margin-left: 20px; padding-bottom: 0px; border-radius: 5px; color: white !important;"> <p>{{ offerCandidacy.status }}</p>
+              </div>
+              </div>
+            </div>
+              <div style="display: flex">
+                <div>
+                  <li><em>CV</em> 
+                    <div *ngIf="offerCandidacy.docCV" class="media-container" (click)="toggleFullScreen($event)">
+                      <img [src]="'data:image/jpeg;base64,' + offerCandidacy.docCV" alt="CV" class="media">
+                    </div>
+                  </li>
+                </div>
+                <div>
+                  <li><em>Diploma</em> 
+                    <div *ngIf="offerCandidacy.docDiploma" class="media-container" (click)="toggleFullScreen($event)">
+                      <img [src]="'data:image/jpeg;base64,' + offerCandidacy.docDiploma" alt="Diploma" class="media">
+                    </div>
+                  </li>
+                </div>
+                <div>
+                  <li><em>Cover Letter </em> 
+                    <div *ngIf="offerCandidacy.docLetter" class="media-container" (click)="toggleFullScreen($event)">
+                      <img [src]="'data:image/jpeg;base64,' + offerCandidacy.docLetter" alt="Letter" class="media" >
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </ul>
+          </div><br>
+
+        
+
+          <div *ngIf=" user && user?.id==offerCandidacy?.user?.id || (user?.id==interview?.user?.id && role!='ADMIN')">
+            <button class="btn btn-outline-info" routerLink="/interview/show/{{interview.id}}">show interview details</button>
+          </div>
+          <div *ngIf="user && role=='ADMIN'">
+            <button class="btn btn-outline-info" routerLink="/admin/interview/show/{{interview.id}}">show interview details</button>
+          </div>
+          <br>
+          <div *ngIf="user && user?.id==interview?.user?.id && role!='ADMIN'">
+            <button class="btn btn-outline-info" routerLink="/user/show/{{offerCandidacy.user.id}}">show candidate profil</button>
+          </div>
+          <div *ngIf="role=='ADMIN'">
+            <button class="btn btn-outline-info" routerLink="/admin/user/show/{{offerCandidacy.user.id}}">show candidate profil</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+
+
+    <!--
+      <div class="media-container" (click)="toggleFullScreen($event)">
+                  <video controls class="media">
+                    <source [src]="'data:video/mp4;base64,' + offerCandidacy.docDiploma" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              
+              -->

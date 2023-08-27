@@ -1,0 +1,20 @@
+<main *ngIf="room" id="main" class="main">
+    <div id="about" class="about-area area-padding">
+      <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div *ngIf="room" class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Room: {{room.name}}</h5>
+                  <p class="card-text">Block: {{room.block}}</p>
+                </div>
+                <img *ngIf="imageSrc" [src]="imageSrc" class="card-img-top" alt="Room image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

@@ -1,0 +1,53 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2>Campaign List</h2>
+                    </div>
+                    <a href="/admin/campaigns/createcampaign" class="btn btn-primary">Add new Campaign</a><br> <br>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let item of Campaigns" class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-details">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" [src]="item.logo" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.name}}</h5>
+                                <!-- <p class="card-text">{{item.description}}</p> -->
+                                <div class="button-group">
+                                    <a [routerLink]="['/admin/campaigns/show', item.id]" class="btn btn-light"><i class="bi bi-aspect-ratio"></i></a>
+                                    <a [routerLink]="['/admin/campaigns/updatecampaign/', item.id]" class="btn btn-light"><i class="bi bi-pen"></i></a>
+                                    <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="deleteCampaign(item.id)"><i class="bi bi-trash3"></i></button>
+                                </div>
+                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        ...
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

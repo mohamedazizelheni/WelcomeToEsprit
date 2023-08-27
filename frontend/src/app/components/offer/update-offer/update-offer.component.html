@@ -1,0 +1,26 @@
+<main id="main">
+
+<div id="about" class="about-area area-padding">
+    <div class="container">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <br>
+        <h2 class="center">Update Offer</h2>
+        <form #updateForm="ngForm" (ngSubmit)="updateOffer(updateForm)">
+          <div class="mb-3">
+            <label class="form-label">speciality</label>
+            <input type="text" class="form-control" name="speciality" [(ngModel)]="offer.speciality" required minlength="2" #speciality="ngModel" [class.is-invalid]="speciality.invalid && speciality.touched">
+            <span style="color: red;" *ngIf="speciality.touched && speciality?.errors?.['required']">Speciality is required</span>
+            <span style="color: red;" *ngIf="speciality.touched && speciality?.errors?.['minlength']">Speciality must be at least 2 characters</span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">description</label>
+            <input type="text" class="form-control" name="description" [(ngModel)]="offer.description">
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="updateForm.invalid">Update</button><br><br>
+          <a [routerLink]="['/admin/offer/list']" class="btn btn-primary">Back to List</a>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,14 @@
+       <!-- ======= Ads Section ======= -->
+       <div *ngIf="Ads" style="display: flex; flex-direction: column;">
+    
+              <img *ngIf="Ads[item].content" class="img"  [src]="Ads[item].content" alt="">
+              
+
+              <img class="img"  *ngIf="Ads[item].content && item == Ads.length-1"  [src]="Ads[0].content" alt="">
+              <img class="img"  *ngIf="Ads[item].content && item < Ads.length-1"  [src]="Ads[item+1].content" alt="">
+      
+              <img class="img"  *ngIf="Ads[item].content&& Ads.length>1 && item == Ads.length-1"  [src]="Ads[1].content" alt="">
+              <img class="img"  *ngIf="Ads[item].content&& Ads.length==1 && item == Ads.length-1"  [src]="Ads[0].content" alt="">
+              <img class="img"  *ngIf="Ads[item].content && item == Ads.length-2"  [src]="Ads[0].content" alt="">
+              <img class="img"  *ngIf="Ads[item].content && item < Ads.length-2"  [src]="Ads[item+2].content" alt="">
+      </div><!-- End ads Section -->

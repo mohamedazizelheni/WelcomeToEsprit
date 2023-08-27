@@ -1,0 +1,119 @@
+
+
+/***********************offer list**************************/
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  /********************** fullscreen doc ************************/
+  .media-container {
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #000;
+  }
+  
+  .fullscreen .media-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .fullscreen .media {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+  .media {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .fullscreen .media {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  
+  .container {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .fullscreen .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+  }
+
+
+/*********************spinner***********************/
+ .spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 30px solid #ff0000; /* Replace #ff0000 with your preferred shade of red */
+  position: absolute;
+  top: 200%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  color: #444;
+  white-space: nowrap;
+}
+
+  
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+#main{
+  margin-left: 230px;
+  min-height: 580px;
+}

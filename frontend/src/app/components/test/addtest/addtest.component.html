@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="card">
+      <div class="card-body">
+          <form #addForm="ngForm" (ngSubmit)="addTest()">
+              <div class="input-group mb-3">
+                  
+              </div>
+              <div class="input-group mb-3">
+                  
+              </div>
+            <button type="submit">submit</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+<main id="main" class="main">
+
+  <div id="about" class="about-area area-padding">
+    <div class="container">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <br>
+        <h2 class="center">Add New Test :</h2>
+        <form #addForm="ngForm" (ngSubmit)="addTest()">
+          <div class="mb-3">
+            <label class="form-label">TItle :</label>
+            <input type="text" [(ngModel)]="test.title" name="Title" class="form-control" placeholder="Title" aria-label="Test" aria-describedby="basic-addon2">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type Test :</label>
+            <input type="text" [(ngModel)]="test.type" name="type" class="form-control" placeholder="Type Test" aria-label="Type Test" aria-describedby="basic-addon2">
+          </div>
+          <button type="submit" class="btn btn-outline-primary">submit</button>
+          </form>
+          </div>
+          </div>
+          </div>
+          </main>
+        

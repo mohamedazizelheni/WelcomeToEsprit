@@ -1,0 +1,179 @@
+
+<main id="main" class="main">
+
+    <div *ngIf="loading">
+        <div class="spinner">
+            <div class="message">Please wait while we process your request...<br></div>
+            <div class="triangle"></div>
+        </div>
+    </div>
+
+    <div *ngIf="!loading">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center"> Admission Candidacy</h2>
+                <form  #addForm="ngForm"  (ngSubmit)="createNewCandidacy(addForm)">
+
+                    <div class="mb-3">
+                        <label class="form-label">bac</label>
+                        <input type="checkbox" class="form-check-input" name="bac" [(ngModel)]="bac" #bac1="ngModel"(change)="onBacChange(bac1.value)">
+                    </div>
+                    
+                    <div *ngIf="bac"  class="mb-3">
+                        <label class="form-label">docBacDiploma</label>
+                        <input type="file" class="form-control" name="docBacDiploma" (change)="onBacDiplomaSelect($event)" required #docBacDiplomaInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docBacDiplomaInput.files?.length">docBacDiploma is required</span>
+                        <div [hidden]="!docBacDiplomaInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docBacDiplomaSrc && docBacDiplomaSrc != ''"[src]="docBacDiplomaSrc" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                    <div *ngIf="bac"  class="mb-3">
+                        <label class="form-label">docBacReleve</label>
+                        <input type="file" class="form-control" name="docBacReleve" (change)="onBacReleveSelect($event)" required #docBacReleveInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docBacReleveInput.files?.length">docBacReleve is required</span>
+                        <div [hidden]="!docBacReleveInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docBacReleveSrc && docBacReleveSrc != ''"[src]="docBacReleveSrc" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                    <div *ngIf="bac" class="mb-3 ">
+                        <label  class="form-label">bacMoy</label>
+                        <input type="text" class="form-control" name="bacMoy" ngModel  required  minlength="4"  #bacMoy="ngModel" [class.is-invalid]="bacMoy.invalid && bacMoy.touched" >
+                        <span style="color: red;"   *ngIf="bacMoy.touched && bacMoy?.errors?.['required']" >bacMoy is required</span>
+                        <span style="color: red;"   *ngIf="bacMoy.touched && bacMoy?.errors?.['minlength']" >bacMoy must be at least 4 caracteres</span>
+                    </div>
+                    <div class="mb-3 ">
+                        <label  class="form-label">bacYear</label>
+                        <input type="text" class="form-control" name="bacYear" ngModel  required  minlength="4"  #bacYear="ngModel" [class.is-invalid]="bacYear.invalid && bacYear.touched">
+                        <span style="color: red;"   *ngIf="bacYear.touched && bacYear?.errors?.['required']" >bacYear is required</span>
+                        <span style="color: red;"   *ngIf="bacYear.touched && bacYear?.errors?.['minlength']" >bacYear must be at least 4 caracteres</span>
+                    </div>
+                    <div class="mb-3 ">
+                        <label  class="form-label">bacEstablishment</label>
+                        <input type="text" class="form-control" name="bacEstablishment" ngModel  required  minlength="3"  #bacEstablishment="ngModel" [class.is-invalid]="bacEstablishment.invalid && bacEstablishment.touched">
+                        <span style="color: red;"   *ngIf="bacEstablishment.touched && bacEstablishment?.errors?.['required']" >bacEstablishment is required</span>
+                        <span style="color: red;"   *ngIf="bacEstablishment.touched && bacEstablishment?.errors?.['minlength']" >bacEstablishment must be at least 3 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">level</label>
+                        <select class="form-select" name="level" ngModel required #level="ngModel"
+                        [class.is-invalid]="level.invalid && level.touched"
+                        (ngModelChange)="onLevelChange($event)">
+                  <option value="" disabled selected>Select a level</option>
+                  <option *ngFor="let level of levels" [value]="level">{{ level }}</option>
+                </select>
+                
+                        <span style="color: red;" *ngIf="level.touched && level?.errors?.['required']">level is required</span>
+                    </div>
+                    
+                    <div *ngIf="bac && level?.value==='1' ||level?.value==='2'||level?.value==='3'||level?.value==='4'" class="mb-3 ">
+                        <label  class="form-label">moy1</label>
+                        <input type="text" class="form-control" name="moy1" ngModel #moy1="ngModel" (change)="onMoy1Change(moy1.value)">
+                    </div>
+                    
+                    <div  *ngIf="bac && level?.value==='1' ||level?.value==='2'||level?.value==='3'||level?.value==='4'" class="mb-3">
+                        <label class="form-label">docReleve1</label>
+                        <input type="file" class="form-control" name="docReleve1" (change)="onReleve1Select($event)" required #docReleve1Input>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docReleve1Input.files?.length">docReleve1 is required</span>
+                        <div [hidden]="!docReleve1Input.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docReleve1Src && docReleve1Src != ''"[src]="docReleve1Src" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                    <div *ngIf="level?.value==='2'||level?.value==='3'||level?.value==='4'" class="mb-3 ">
+                        <label  class="form-label">moy2</label>
+                        <input type="text" class="form-control" name="moy2" ngModel #moy2="ngModel" (change)="onMoy2Change(moy2.value)">
+                    </div>
+                    <div *ngIf="bac && level?.value==='2'||level?.value==='3'||level?.value==='4'" class="mb-3">
+                        <label   class="form-label">docReleve2</label>
+                        <input type="file" class="form-control" name="docReleve2" (change)="onReleve2Select($event)" required #docReleve2Input>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docReleve2Input.files?.length">docReleve2 is required</span>
+                        <div [hidden]="!docReleve2Input.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docReleve2Src && docReleve2Src != ''"[src]="docReleve2Src" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                    <div *ngIf="bac && level?.value==='3'||level?.value==='4'" class="mb-3 ">
+                        <label  class="form-label">moy3</label>
+                        <input type="text" class="form-control" name="moy3" ngModel #moy3="ngModel" (change)="onMoy3Change(moy3.value)">
+                    </div>
+                       
+
+                    <div  *ngIf="bac && level?.value==='3'||level?.value==='4'" class="mb-3">
+                        <label class="form-label">docBacReleve3</label>
+                        <input type="file" class="form-control" name="docBacReleve3" (change)="onReleve3Select($event)" required #docBacReleve3Input>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docBacReleve3Input.files?.length">docBacReleve3 is required</span>
+                        <div [hidden]="!docBacReleve3Input.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docReleve3Src && docReleve3Src != ''"[src]="docReleve3Src" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                    <div  *ngIf="bac && level?.value === '4'" class="mb-3 ">
+                        <label  class="form-label">moy4</label>
+                        <input type="text" class="form-control" name="moy4" ngModel #moy4="ngModel" (change)="onMoy4Change(moy4.value)">
+                    </div>
+                    <div *ngIf="bac && level?.value === '4'" class="mb-3">
+                        <label  class="form-label">docBacReleve4</label>
+                        <input type="file" class="form-control" name="docBacReleve4" (change)="onReleve4Select($event)" required #docBacReleve4Input>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docBacReleve4Input.files?.length">docBacReleve4 is required</span>
+                        <div [hidden]="!docBacReleve4Input.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docReleve4Src && docReleve4Src != ''"[src]="docReleve4Src" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                    <div *ngIf="bac" class="mb-3">
+                        <label class="form-label">diploma</label>
+                        <input type="checkbox" class="form-check-input" name="diploma" [(ngModel)]="diploma" #diploma1="ngModel" (change)="onDiplomaChange(diploma1)">
+                    </div>
+                    
+
+                    <div *ngIf="diploma" class="mb-3">
+                        <label class="form-label">docDiploma</label>
+                        <input type="file" class="form-control" name="docDiploma" (change)="onDiplomaSelect($event)" required #docDiplomaInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docDiplomaInput.files?.length">docDiploma is required</span>
+                        <div [hidden]="!docDiplomaInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="docDiplomaSrc && docDiplomaSrc != ''" [src]="docDiplomaSrc" alt="Image" class="media-container">
+                         </div>
+                    </div>
+                    
+                    
+                    <div class="mb-3 ">
+                        <label  class="form-label">speciality</label>
+                        <input type="text" class="form-control" name="speciality" ngModel  required  minlength="2"  #speciality="ngModel" [class.is-invalid]="speciality.invalid && speciality.touched">
+                        <span style="color: red;"   *ngIf="speciality.touched && speciality?.errors?.['required']" >speciality is required</span>
+                        <span style="color: red;"   *ngIf="speciality.touched && speciality?.errors?.['minlength']" >speciality must be at least 2 caracteres</span>
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label  class="form-label">bacGovernorate</label>
+                        <input type="text" class="form-control" name="bacGovernorate" ngModel  required  minlength="3"  #bacGovernorate="ngModel" [class.is-invalid]="bacGovernorate.invalid && bacGovernorate.touched">
+                        <span style="color: red;"   *ngIf="bacGovernorate.touched && bacGovernorate?.errors?.['required']" >bacGovernorate is required</span>
+                        <span style="color: red;"   *ngIf="bacGovernorate.touched && bacGovernorate?.errors?.['minlength']" >bacGovernorate must be at least 3 caracteres</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Day</label>
+                        <select class="form-select" name="day" ngModel [(ngModel)]="day1" (ngModelChange)="updateHours()" required #day="ngModel" [class.is-invalid]="day.invalid && day.touched">
+                            <option value="" disabled selected>Select a day</option>
+                            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                        </select>
+                        <span style="color: red;" *ngIf="day.touched && day?.errors?.['required']">Day is required</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Hour</label>
+                        <select class="form-select" name="hour" ngModel required #hour="ngModel" [class.is-invalid]="hour.invalid && hour.touched">
+                            <option value="" disabled selected>Select an hour</option>
+                            <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+                        </select>
+                        <span style="color: red;" *ngIf="hour.touched && hour?.errors?.['required']">Hour is required</span>
+                    </div>
+
+
+                    
+                    <button type="submit" class="btn btn-primary"  [disabled]="addForm.invalid">Submit</button><br><br>
+                    <a [routerLink]="['/offer/list']" class="btn btn-primary">Back</a>
+          
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>

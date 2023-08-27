@@ -1,0 +1,12 @@
+
+            <ul>
+                <div style="display: flex; flex-direction: column;" *ngIf="achievement.video">{{achievement.name}}
+                  <div class="media-container" (click)="toggleFullScreen($event)">
+                    <video controls class="media" style="width: 400px;">
+                      <source [src]="'data:video/mp4;base64,' + achievement.video" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+            </ul>
+        

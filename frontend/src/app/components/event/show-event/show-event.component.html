@@ -1,0 +1,42 @@
+<main id="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <br>
+            <h2 class="center">{{event.name}}</h2>
+            <ul>
+                <li>Date: {{event.date}} </li>
+                <li>Space: {{event.space}} </li>
+                <div *ngIf="event.planning" class="media-container" (click)="toggleFullScreen($event)">
+                  <div *ngIf="getFileFormat(event.planning) === 'png' || getFileFormat(event.planning) === 'jpeg'">
+                    <img [src]="'data:image/jpeg;base64,' + event.planning" alt="CV" class="media">
+                  </div>
+                  <div *ngIf="getFileFormat(event.planning) === 'pdf'">
+                    <ngx-extended-pdf-viewer [src]="'data:application/pdf;base64,' + event.planning" [zoom]="100"  height="100vh"></ngx-extended-pdf-viewer>
+                  </div>
+                </div>
+            </ul>
+          </div>
+          <div style="display: flex;">
+            <div style="flex-direction: column;">
+              <div>
+                <a [routerLink]="['/admin/invitationSpeaker',event.id]" class="btn btn-primary">invite Speakers</a>
+              </div>
+              <div style="margin-top: 5px;">
+                <a [routerLink]="['/admin/getEvents']" class="btn btn-primary">Back to event list</a>
+              </div>
+            </div>
+            <div>
+              <a style="margin-left: 5px;" [routerLink]="['/admin/addAchievement', event.id]" class="btn btn-primary">add achievement</a>
+            </div>
+          </div> <br>
+          <h2>Achievements:</h2>
+          <div class="video-container">
+            <app-show-achievement *ngFor="let achievement of achievements" [id]="achievement.id"></app-show-achievement>
+          </div>
+          
+        </div>
+      </div>
+    </main>
+      

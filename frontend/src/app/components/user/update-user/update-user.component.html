@@ -1,0 +1,141 @@
+<main id="main" class="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center"> Update user</h2>
+                <form *ngIf="user"  #addForm="ngForm"  (ngSubmit)="updateUser(addForm)">
+                    <div class="mb-3 ">
+                        <label  class="form-label">"cin / passport number"</label>
+                        <input type="text" class="form-control" name="cin" [(ngModel)]="user.cin"  required  minlength="8"  #cin="ngModel" [class.is-invalid]="cin.invalid && cin.touched">
+                        <span style="color: red;"   *ngIf="cin.touched && cin?.errors?.['required']" >"cin / passport number" is required</span>
+                        <span style="color: red;"   *ngIf="cin.touched && cin?.errors?.['minlength']" >"cin / passport number" must be at least 8 caracteres</span>
+                    </div>  
+                    <div class="mb-3 ">
+                        <label  class="form-label">firstName</label>
+                        <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName"  required  minlength="2"  #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched">
+                        <span style="color: red;"   *ngIf="firstName.touched && firstName?.errors?.['required']" >firstName is required</span>
+                        <span style="color: red;"   *ngIf="firstName.touched && firstName?.errors?.['minlength']" >firstName must be at least 2 caracteres</span>
+                    </div>                    
+                    <div class="mb-3 ">
+                        <label  class="form-label">lastName</label>
+                        <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName"  required  minlength="2"  #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched">
+                        <span style="color: red;"   *ngIf="lastName.touched && lastName?.errors?.['required']" >lastName is required</span>
+                        <span style="color: red;"   *ngIf="lastName.touched && lastName?.errors?.['minlength']" >lastName must be at least 2 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div>
+                          <div class="form-check form-check-inline" *ngFor="let gender of genders">
+                            <input class="form-check-input" type="radio" name="gender" [(ngModel)]="user.gender" (change)="onGenderSelect()" [value]="gender" required #genderInput="ngModel">
+                            <label class="form-check-label">{{ gender }}</label>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="mb-3">
+                        <label class="form-label">image</label>
+                        <div>
+                            <div style="display: flex; align-items:flex-start;">
+                                <input type="file" class="form-control" name="image" (change)="onIMageUpdate($event)" #fileInput>
+                                <div style="display: flex; flex-direction: column; margin-left: 10px;">
+                                    <img *ngIf="imageSrc" [src]="imageSrc" alt="Image" class="media-container" >
+                                    <div style=" margin-top: 10px;display: flex; align-items:flex-start">
+                                        <div [style.visibility]="disableReset ? 'hidden' : 'visible'">
+                                            <a (click)="onIMageReset(fileInput)" style="cursor: pointer;">Reset</a>
+                                        </div>
+                                        <div [style.visibility]="disableDelete ? 'hidden' : 'visible'" style="margin-left: auto;">
+                                            <a (click)="onIMageDelete(fileInput)" style=" cursor: pointer;">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label  class="form-label">address</label>
+                        <input type="text" class="form-control" name="address" [(ngModel)]="user.address"  required  minlength="3"  #address="ngModel" [class.is-invalid]="address.invalid && address.touched">
+                        <span style="color: red;"   *ngIf="address.touched && address?.errors?.['required']" >address is required</span>
+                        <span style="color: red;"   *ngIf="address.touched && address?.errors?.['minlength']" >address must be at least 3 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="birthDate">Birth Date</label>
+                        <input type="date" id="birthDate" name="birthDate" [(ngModel)]="user.birthDate" required>
+                    </div>
+                    <div class="mb-3 ">
+                        <label  class="form-label">phone</label>
+                        <input type="text" class="form-control" name="phone" [(ngModel)]="user.phone"  required  minlength="8"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched">
+                        <span style="color: red;"   *ngIf="phone.touched && phone?.errors?.['required']" >phone is required</span>
+                        <span style="color: red;"   *ngIf="phone.touched && phone?.errors?.['minlength']" >phone must be at least 8 caracteres</span>
+                    </div>
+                    <div class="mb-3 ">
+                        <label  class="form-label">mail</label>
+                        <input type="text" class="form-control" name="mail" [(ngModel)]="user.mail"  required  minlength="8"  #mail="ngModel" [class.is-invalid]="mail.invalid && mail.touched">
+                        <span style="color: red;"   *ngIf="mail.touched && mail?.errors?.['required']" >mail is required</span>
+                        <span style="color: red;"   *ngIf="mail.touched && mail?.errors?.['minlength']" >mail must be at least 8 caracteres</span>
+                    </div>
+
+                    <div *ngIf="role=='ADMIN'" class="mb-3 ">
+                        <label  class="form-label">department</label>
+                        <input type="text" class="form-control" name="department" [(ngModel)]="user.department">
+                    </div>
+                    <div *ngIf="role=='ADMIN'" class="mb-3">
+                        <label for="hiringDatee">Hiring Date</label>
+                        <input type="date" id="hiringDatee" name="hiringDate" [(ngModel)]="user.hiringDate" >
+                    </div>
+                    
+                    <div *ngIf="role=='ADMIN'"  class="mb-3">
+                        <label class="form-label">evaluator</label>
+                        <input type="checkbox" class="form-check-input" name="evaluator" [(ngModel)]="user.evaluator">
+                    </div>
+                    <div *ngIf="role=='ADMIN'"  class="mb-3">
+                        <label class="form-label">Jury</label>
+                        <input type="checkbox" class="form-check-input" name="jury" [(ngModel)]="user.jury">
+                    </div>
+                    <div *ngIf="role=='ADMIN'"  class="mb-3">
+                        <label class="form-label">speaker</label>
+                        <input type="checkbox" class="form-check-input" name="speaker" [(ngModel)]="user.speaker">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">bacSection</label>
+                        <select class="form-select" name="bacSection" [(ngModel)]="user.bacSection" required #bacSection="ngModel" [class.is-invalid]="bacSection.invalid && bacSection.touched">
+                            <option value="" disabled selected>Select a bacSection</option>
+                            <option *ngFor="let bacSection of bacSections" [value]="bacSection">{{ bacSection }}</option>
+                        </select>
+                        <span style="color: red;" *ngIf="bacSection.touched && bacSection?.errors?.['required']">BacSection is required</span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">educationLevel</label>
+                        <select class="form-select" name="educationLevel" [(ngModel)]="user.educationLevel" required #educationLevel="ngModel" [class.is-invalid]="educationLevel.invalid && educationLevel.touched">
+                            <option value="" disabled selected>Select a level</option>
+                            <option *ngFor="let educationLevel of educationLevels" [value]="educationLevel">{{ educationLevel }}</option>
+                        </select>
+                        <span style="color: red;" *ngIf="educationLevel.touched && educationLevel?.errors?.['required']">EducationLevel is required</span>
+                    </div>
+                    <div class="mb-3 ">
+                        <label  class="form-label">speciality</label>
+                        <input type="text" class="form-control" name="speciality" [(ngModel)]="user.speciality"  required  minlength="2"  #speciality="ngModel" [class.is-invalid]="speciality.invalid && speciality.touched">
+                        <span style="color: red;"   *ngIf="speciality.touched && speciality?.errors?.['required']" >speciality is required</span>
+                        <span style="color: red;"   *ngIf="speciality.touched && speciality?.errors?.['minlength']" >speciality must be at least 2 caracteres</span>
+                    </div>
+
+                    <div *ngIf="role=='ADMIN'" class="mb-3 ">
+                        <label  class="form-label">classe</label>
+                        <input type="text" class="form-control" name="classe" [(ngModel)]="user.classe" >
+                    </div>
+
+                    <div *ngIf="role=='ADMIN'" class="mb-3">
+                        <label class="form-label">role</label>
+                        <select class="form-select" name="role2" [(ngModel)]="role1">
+                            <option value="" disabled selected>Select a role</option>
+                            <option *ngFor="let role2 of roleNames" [value]="role2">{{ role2 }}</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"  [disabled]="addForm.invalid">Submit</button><br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

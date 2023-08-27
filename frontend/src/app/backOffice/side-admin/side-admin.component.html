@@ -1,0 +1,80 @@
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="admin/user">
+          <i class="bi bi-building"></i>
+          <span>Profils</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/offer/list">
+          <i class="bi bi-building"></i>
+          <span>Recruitment</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin/admissionCandidacy/list">
+          <i class="bi bi-building"></i>
+          <span>Admission</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin/listTest">
+          <i class="bi bi-building"></i>
+          <span>Tests</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin/listQuestion">
+          <i class="bi bi-building"></i>
+          <span>Questions</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin/getEvents">
+          <i class="bi bi-building"></i>
+          <span>Events</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/ads">
+          <i class="bi bi-megaphone"></i>
+          <span>Ads</span>
+        </a>
+      </li><!-- End Ad Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/faq">
+          <i class="bi bi-info-circle"></i>
+          <span>FAQ</span>
+        </a>
+      </li><!-- End FAQ Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/campaigns">
+          <i class="bi bi-building"></i>
+          <span>Campaigns</span>
+        </a>
+      </li>
+      <li *ngIf="user && (user.jury || user.evaluator)" class="nav-item">
+        <a class="nav-link" href="admin/interview/list/{{user.id}}">
+          <i class="bi bi-building"></i>
+          <span>Interviews</span>
+        </a>
+      </li>
+      
+
+
+
+
+
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->

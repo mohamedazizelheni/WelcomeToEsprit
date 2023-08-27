@@ -1,0 +1,5 @@
+.video-container {
+    display: flex;
+    gap: 5px; /* Adjust the gap value to set the desired space between videos */
+  }
+  

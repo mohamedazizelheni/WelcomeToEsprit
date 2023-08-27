@@ -1,0 +1,56 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2 style="color: #0074d9; font-weight: bold; font-size: 30px;">FAQ List</h2>
+                    </div>
+                    <a href="/admin/faq/createfaq" class="btn btn-primary" style="text-underline-position: under;"> Add new FAQ</a><br> <br>
+                    
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <table class="table">
+                <thead class="table-primary">
+                  <tr>
+                    <td>Question</td>
+                    <td>Answer</td>
+                    <td></td>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of faq">
+                    <td>{{item.question}}</td>
+                    <td>{{item.answer}}</td>
+                    <td>
+                      <div class="button-group">
+                        <a [routerLink]="['/admin/faq/updatefaq/', item.id]" class="btn btn-light"><i class="bi bi-pen"></i></a>
+                        <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="deleteAd(item.id)"><i class="bi bi-trash3"></i></button>
+                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                <!-- <div *ngFor="let item of faq" class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-details">
+                        <div class="card" style="width: 18rem;">
+                          <h5 class="card-title">{{item.question}}</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.answer}}</h5>
+                                <div class="button-group">
+                                    <a [routerLink]="['/admin/faq/updatefaq/', item.id]" class="btn btn-light"><i class="bi bi-pen"></i></a>
+                                    <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="deleteAd(item.id)"><i class="bi bi-trash3"></i></button>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->
+

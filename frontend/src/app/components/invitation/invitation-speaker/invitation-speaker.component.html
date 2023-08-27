@@ -1,0 +1,46 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                   
+            </div>
+            
+            <div class="row">
+                <h1>Speakers:</h1>
+
+                <ul style="margin-left                : 15px;">
+                    <div *ngFor="let user of speakersList">
+                      <li>
+                        <div style="display: flex; align-items: center;">
+                          <span><h3>{{user.firstName}} {{user.lastName}}</h3></span>
+                          <div class="button-group">
+                            <button *ngIf="role=='ADMIN'" class="btn btn-primary btn-sm" (click)="inviterSpeaker(user.id)" style="margin-left: 10px;">Invite</button>
+                          </div>
+                        </div>
+                      </li>
+                    </div>
+                  </ul>
+                  
+                  
+                                    
+                <div>
+                    <select id="niveau" #selectedNiveau>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+             </select>
+             <button *ngIf="role=='ADMIN'" class="btn btn-primary" (click)="inviterstudents(selectedNiveau.value)" style="margin: 0.5cm;" >Invite Students</button> 
+                
+           </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

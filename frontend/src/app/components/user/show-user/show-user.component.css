@@ -1,0 +1,9 @@
+.list-inline-item {
+    padding-right: 20px;
+  }
+  .list-inline-item::before {
+    font-weight: bold;
+    content: "\2022";
+    margin-right: 10px;
+  }
+  

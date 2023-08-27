@@ -1,0 +1,34 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2>Our recruitment offers</h2>
+                    </div>
+                    <a *ngIf="role=='ADMIN'" href="/admin/offer/add" class="btn btn-primary">Add new offer</a><br> <br>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let offer of offerList" class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-details">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="../assets/recruitment.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{offer.speciality}}</h5>
+                                <p class="card-text">{{offer.description}}</p>
+                                <div class="button-group">
+                                    <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/offer/show', offer.id]" class="btn btn-primary">Show</a>
+                                    <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/offer/update', offer.id]" class="btn btn-primary">Update</a>
+                                    <button *ngIf="role=='ADMIN'" class="btn btn-primary" (click)="deleteOffer(offer.id)">Delete</button>
+                                    <a *ngIf="role=='PRE'" (click)="apply(offer.id)" class="btn btn-primary">َApply now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

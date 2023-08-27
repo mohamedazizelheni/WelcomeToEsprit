@@ -1,0 +1,36 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2 style="text-align: center; color: #09baf0a9; font-size: 36px; font-family: Arial, sans-serif; border-bottom: 2px solid #000000; padding-bottom: 10px;">Our Tests</h2>
+                    </div>
+                    <a *ngIf="role=='ADMIN'" href="/admin/addTest" class="btn btn-secondary">Add new Test</a><br> <br>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let test of testList" class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-details">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="../assets/test.png" alt="Card image cap">
+                            <div class="card-body">
+                                
+                                <h5 class="card-text">{{test.type}}</h5>
+                                
+                          
+
+                                <div class="button-group">
+                                    <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/showTest', test]" class="btn btn-primary">Show</a>
+                                    
+                                   <button *ngIf="role=='ADMIN'"  class="btn btn-primary" (click)="removeTestById(test.id)">Delete</button> 
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

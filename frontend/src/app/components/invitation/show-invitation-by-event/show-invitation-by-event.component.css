@@ -1,0 +1,114 @@
+table {
+    border-collapse: collapse; }
+th {
+        text-align: inherit; }
+        button {
+            border-radius: 0; }
+            .table {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 1rem;
+                background-color: transparent; }
+                .table th,
+                .table td {
+                  padding: 0.75rem;
+                  vertical-align: top;
+                  border-top: 1px solid #dee2e6; }
+                .table thead th {
+                  vertical-align: bottom;
+                  border-bottom: 2px solid #dee2e6; }
+                .table tbody + tbody {
+                  border-top: 2px solid #dee2e6; }
+                .table .table {
+                  background-color: #fff; }
+              
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem; }
+
+.table-bordered {
+  border: 1px solid #dee2e6; }
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6; }
+  .table-bordered thead th,
+  .table-bordered thead td {
+    border-bottom-width: 2px; }
+
+.table-borderless th,
+.table-borderless td,
+.table-borderless thead th,
+.table-borderless tbody + tbody {
+  border: 0; }
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05); }
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075); }
+
+.table-primary,
+.table-primary > th,
+.table-primary > td {
+  background-color: #d8d2fa; }
+
+.table-hover .table-primary:hover {
+  background-color: #c4bbf7; }
+  .table-hover .table-primary:hover > td,
+  .table-hover .table-primary:hover > th {
+    background-color: #c4bbf7; }
+
+.table-secondary,
+.table-secondary > th,
+.table-secondary > td {
+  background-color: #d6d8db; }
+
+.table-hover .table-secondary:hover {
+  background-color: #c8cbcf; }
+  .table-hover .table-secondary:hover > td,
+  .table-hover .table-secondary:hover > th {
+    background-color: #c8cbcf; }
+
+.table-success,
+.table-success > th,
+.table-success > td {
+  background-color: #c7ede6; }
+
+.table-hover .table-success:hover {
+  background-color: #b4e7dd; }
+  .table-hover .table-success:hover > td,
+  .table-hover .table-success:hover > th {
+    background-color: #b4e7dd; }
+
+.table-info,
+.table-info > th,
+.table-info > td {
+  background-color: #bddbff; }
+
+.table-hover .table-info:hover {
+  background-color: #a4cdff; }
+  .table-hover .table-info:hover > td,
+  .table-hover .table-info:hover > th {
+    background-color: #a4cdff; }
+
+.table-warning,
+.table-warning > th,
+.table-warning > td {
+  background-color: #ffecc6; }
+
+.table-hover .table-warning:hover {
+  background-color: #ffe4ad; }
+  .table-hover .table-warning:hover > td,
+  .table-hover .table-warning:hover > th {
+    background-color: #ffe4ad; }
+
+.table-danger,
+.table-danger > th,
+.table-danger > td {
+  background-color: #fcc4ce; }
+
+.table-hover .table-danger:hover {
+  background-color: #fbacba; }
+  .table-hover .table-danger:hover > td,
+  .table-hover .table-danger:hover > th {
+    background-color: #fbacba; }

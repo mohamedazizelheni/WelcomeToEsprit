@@ -1,0 +1,28 @@
+<main id="main">
+    <div class="container" style="min-height: 500px;"><br>
+        <table class="table table-bordered" style="max-width: 500px;">
+            <thead>
+              <tr>
+                <th scope="col">Candidate</th>
+                <th scope="col">Score</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <tr  *ngFor="let offerCandidacy of offerCandidaciesList">
+                    <td>{{offerCandidacy.user.firstName}} {{offerCandidacy.user.lastName}}</td>
+                    <td>{{offerCandidacy.score}}</td>
+                    <td>{{offerCandidacy.status}}</td>
+                    <td><button type="button" class="btn btn-success btn-sm" (click)="onAccept(offerCandidacy.id)">accept</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" (click)="onReject(offerCandidacy.id)">reject</button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+          <div>
+            <canvas #myCanvas></canvas>
+          </div>
+          
+    </div>
+</main>

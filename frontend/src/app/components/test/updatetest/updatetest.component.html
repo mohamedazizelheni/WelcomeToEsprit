@@ -1,0 +1,28 @@
+<main id="main" class="main">
+    <div id="about" class="about-area area-padding">
+      <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <br>
+          <h2 class="center">Update Test</h2>
+          <form (ngSubmit)="updateTest()">
+            <div class="mb-3">
+                <label class="form-label">Id</label>
+                <input type="text" class="form-control" name="type" [(ngModel)]="test.id" required>
+              </div>
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" [(ngModel)]="test.title" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Type</label>
+              <input type="text" class="form-control" name="type" [(ngModel)]="test.type" required>
+            </div>
+            
+            
+           <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  

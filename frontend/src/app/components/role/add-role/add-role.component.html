@@ -1,0 +1,24 @@
+<br>
+<br>
+<br>
+<br>
+    
+<div class="d-flex justify-content-center row"> 
+    <div class="col-md-9">
+        <div class="feed p-2">
+            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white border text-center">
+                <div class="form-group flex-grow-1 mr-1">
+                    <form (submit)="onSubmit()">
+                        <label>Nom du rôle:</label>
+                        <input type="text" [(ngModel)]="newRole.role" name="role">
+                        <br>
+                        <button type="submit">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

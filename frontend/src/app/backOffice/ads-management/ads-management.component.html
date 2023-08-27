@@ -1,0 +1,94 @@
+<!-- <div class="data col-12">
+    <div class="card overflow-auto">
+
+      <div class="card-body pb-0">
+        <h5 class="card-title">Ads List</h5>
+        <button class="btn btn-primary float-right">Add Ad</button>
+        <a class="btn btn-warning link" href="" >Add Ad</a>
+
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th class="col first">Ad</th>
+              <th class="col">Name</th>
+              <th class="col">Campain</th>
+              <th class="col">Views Number</th>
+              <th class="col">Start Date</th>
+              <th class="col">End Date</th>
+              <th class="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of Ads">
+              <td><img [src]="item.content" alt=""></td>
+              <td>{{item.name}}</td>
+              <td>{{item.socity}}</td>
+              <td>{{item.finalNbViews}}</td>
+              <td>{{item.startDate}}</td>
+              <td>{{item.endDate}}</td>
+              <td>
+                <a href=""><i class="bi bi-pen update-icon"></i></a>
+                <a href=""><i class="bi bi-trash3 delete-icon"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div> -->
+
+  <main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2 style="color: #0074d9; font-weight: bold; font-size: 30px;">Ads List</h2>
+                    </div>
+                    <a href="/admin/ads/createad" class="btn btn-primary">Add new Ad</a><a  style="margin-left: 20px;" class="btn btn-success" (click)="EportPDF()">Export PDF</a><br> <br>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let item of Ads" class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-details">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" style="min-height: 200px; max-height: 200px;" [src]="item.content" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{item.speciality}}</h5>
+                                <p class="card-text">{{item.description}}</p>
+                                <div class="button-group">
+                                    <a [routerLink]="['/admin/ads/show/', item.id]" class="btn btn-light"><i class="bi bi-aspect-ratio"></i></a>
+                                    <a [routerLink]="['/admin/ads/updatead/', item.id]" class="btn btn-light"><i class="bi bi-pen"></i></a>
+                                    <button class="btn btn-light" data-toggle="modal" data-target="#exampleModal" (click)="deleteAd(item.id)"><i class="bi bi-trash3"></i></button>
+                                </div>
+                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        ...
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

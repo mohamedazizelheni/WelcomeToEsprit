@@ -1,0 +1,74 @@
+<main id="main" class="main">
+
+    <div *ngIf="loading">
+        <div class="spinner">
+            <div class="message">Please wait while we process your request...<br></div>
+            <div class="triangle"></div>
+        </div>
+    </div>
+
+    <div *ngIf="!loading">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center"> Candidacy submit</h2>
+                <form  #addForm="ngForm"  (ngSubmit)="addOfferCandidacy(addForm)">
+                    <div class="mb-3">
+                        <label class="form-label">docCV</label>
+                        <input type="file" class="form-control" name="docCV" (change)="onDocCVSelect($event)" required #docCVInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docCVInput.files?.length">docCV is required</span>
+                        <div [hidden]="!docCVInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="cvSrc && cvSrc != ''"[src]="cvSrc" alt="Image" class="media-container">
+                        </div>
+                      </div>
+                      
+                    <div class="mb-3">
+                        <label class="form-label">docDiploma</label>
+                        <input type="file" class="form-control" name="docDiploma" (change)="onDocDiplomaSelect($event)" required #docDiplomaInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docDiplomaInput.files?.length">docDiploma is required</span>
+                        <div [hidden]="!docDiplomaInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                                <img *ngIf="diplomaSrc && diplomaSrc != ''" [src]="diplomaSrc" alt="Image" class="media-container">
+                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">docLetter</label>
+                        <input type="file" class="form-control" name="docLetter" (change)="onDocLetterSelect($event)" required #docLetterInput>
+                        <span style="color: red;" *ngIf="addForm.submitted && !docLetterInput.files?.length">docLetter is required</span>
+                        <div [hidden]="!docLetterInput.files?.length" style="display: flex; flex-direction: column; margin-left: 10px;">
+                            <img *ngIf="letterSrc && letterSrc != ''" [src]="letterSrc" alt="Image" class="media-container">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 ">
+                        <label  class="form-label">establishment</label>
+                        <input type="text" class="form-control" name="establishment" ngModel  required  minlength="2"  #establishment="ngModel" [class.is-invalid]="establishment.invalid && establishment.touched">
+                        <span style="color: red;"   *ngIf="establishment.touched && establishment?.errors?.['required']" >establishment is required</span>
+                        <span style="color: red;"   *ngIf="establishment.touched && establishment?.errors?.['minlength']" >establishment must be at least 2 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Day</label>
+                        <select class="form-select" name="day" ngModel [(ngModel)]="day1" (ngModelChange)="updateHours()" required #day="ngModel" [class.is-invalid]="day.invalid && day.touched">
+                            <option value="" disabled selected>Select a day</option>
+                            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                        </select>
+                        <span style="color: red;" *ngIf="day.touched && day?.errors?.['required']">Day is required</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Hour</label>
+                        <select class="form-select" name="hour" ngModel required #hour="ngModel" [class.is-invalid]="hour.invalid && hour.touched">
+                            <option value="" disabled selected>Select an hour</option>
+                            <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+                        </select>
+                        <span style="color: red;" *ngIf="hour.touched && hour?.errors?.['required']">Hour is required</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary"  [disabled]="addForm.invalid">Submit</button><br><br>
+                    <a [routerLink]="['/offer/list']" class="btn btn-primary">Back</a>
+          
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>

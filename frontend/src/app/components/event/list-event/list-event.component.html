@@ -1,0 +1,37 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br>
+                        <h2>Our Event</h2>
+                    </div>
+                    <a *ngIf="role=='ADMIN'" href="/admin/addEvent" class="btn btn-primary">Add new Event</a><br> <br>
+                </div>
+            </div>
+                <div *ngFor="let event of eventList" style="display: flex;">
+                        <div class="card"  style="width: 30rem;">
+                            <img class="card-img-top" src="../assets/event.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{event.name}}</h5>
+                                <p class="card-text">{{event.date}}</p>
+                                <p class="card-text">{{event.space}}</p>
+                                <div *ngIf="event.planning" class="media-container" (click)="toggleFullScreen($event)">
+                                    <div *ngIf="getFileFormat(event.planning) === 'png' || getFileFormat(event.planning) === 'jpeg'">
+                                      <img [src]="'data:image/jpeg;base64,' + event.planning" alt="planning" class="media">
+                                    </div>
+                                  </div>
+
+                                <div class="button-group">
+                                    <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/showEvent', event.id]" class="btn btn-primary">Show</a>
+                                    <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/updateEvent', event.id]" class="btn btn-primary">Update</a>
+                                    <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/addAchievement', event.id]" class="btn btn-primary">Add Achievement</a>
+                                   <button *ngIf="role=='ADMIN'"  class="btn btn-primary" (click)="deleteEvent(event.id)">Delete</button> 
+                                  </div>
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

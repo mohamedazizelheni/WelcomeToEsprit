@@ -1,0 +1,16 @@
+<main id="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container"><br>
+            <h2>List of interviews:</h2>
+            <table>
+            <tr *ngFor="let interview of interviewList">
+                <td>{{interview.date  | date:'EEEE dd-MM-yyyy \'at\' HH:mm'}}</td>
+                <td *ngIf="role=='ADMIN'"><button class=" btn btn-outline-info btn-sm" routerLink="/admin/interview/show/{{interview?.id}}">show interview details</button></td>
+                <td *ngIf="role!='ADMIN'"><button class=" btn btn-outline-info btn-sm" routerLink="/interview/show/{{interview?.id}}">show interview details</button></td>
+
+                
+            </tr>
+            </table>
+        </div>
+    </div><!-- End About Section -->
+</main><!-- End #main -->

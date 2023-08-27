@@ -1,0 +1,54 @@
+    <main id="main">
+      <div id="about" class="about-area area-padding">
+        <div *ngIf="admissionCandidacy?.tests" class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <br> <br>
+                        <h1> <b> General culture test </b></h1>
+                    </div>
+                </div>
+            </div>
+            <h3> <strong> Test questions: </strong></h3>
+            <div  >
+              <form  #testForm="ngForm"  (ngSubmit)="getResultTest(testForm)">
+                <div *ngFor="let question of admissionCandidacy.tests[0]?.questions; let i = index">
+                  <h3>{{i+1}}. {{ question?.question }}:</h3>
+                  <ol type="A">
+                    <li>
+                      <input type="radio" [name]="'rep1q' + i.toString()" [(ngModel)]="answer[i]" [value]="question?.true1" [hidden]="admissionCandidacy.testScore" >
+                      <label>{{ question.true1 }}</label>
+                    </li>
+                    <li>
+                      <input type="radio" [name]="'rep2q' + i.toString()" [(ngModel)]="answer[i]" [value]="question?.false1" [hidden]="admissionCandidacy.testScore" >
+                      <label>{{ question.false1 }}</label>
+                    </li>
+                    <li>
+                      <input type="radio" [name]="'rep3q' + i.toString()"  [(ngModel)]="answer[i]" [value]="question?.false2" [hidden]="admissionCandidacy.testScore" >
+                      <label>{{ question.false2 }}</label>
+                    </li>
+                    <li>
+                      <input type="radio" [name]="'rep4q' + i.toString()" [(ngModel)]="answer[i]" [value]="question?.false3" [hidden]="admissionCandidacy.testScore" >
+                      <label>{{ question.false3 }}</label>
+                    </li>
+                  </ol>
+                  
+                </div>
+                <div  style="display: flex;" [hidden]="admissionCandidacy.testScore">
+                  <label class="form-label">confirm</label>
+                  <input style="margin-left: 10px;" type="checkbox" class="form-check-input" name="confirm" [(ngModel)]="confirmed" required>
+                  <span style="color: red;" *ngIf="testForm.submitted ">required</span>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary"  [hidden]="admissionCandidacy.testScore" [disabled]="!answer[0] || !answer[1] || !answer[2] || !answer[3]">Submit Test</button>
+              </form>
+             
+              <div *ngIf="admissionCandidacy.testScore" >
+                <h1 style="color: blue;"> <b>Test score: {{admissionCandidacy.testScore}}/20 </b> </h1>
+              </div>
+            </div>
+          </div>
+        </div><!-- End About Section -->
+      </main><!-- End #main -->
+
+

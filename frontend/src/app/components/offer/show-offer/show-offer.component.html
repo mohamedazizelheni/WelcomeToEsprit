@@ -1,0 +1,33 @@
+<main id="main">
+
+<div id="about" class="about-area area-padding">
+    <div class="container">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <br>
+    <h2 class="center">Offer details</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td><strong>Speciality</strong></td>
+          <td>{{offer.speciality}}</td>
+        </tr>
+        <tr>
+          <td><strong>Description</strong></td>
+          <td>{{offer.description}}</td>
+        </tr>
+        <tr>
+          <td><strong>Creation date</strong></td>
+          <td>{{offer.creationDate | date:'EEEE dd-MM-yyyy \'at\' HH:mm'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button *ngIf="role=='ADMIN'" class="btn btn-outline-info" routerLink="/admin/offerCandidacy/list/{{offer.id}}">show candidacies</button>
+  <div><br></div>
+  <a [routerLink]="['/admin/offer/list']" class="btn btn-primary">Back to List</a>
+
+</div>
+
+  </div>
+</main>
+  

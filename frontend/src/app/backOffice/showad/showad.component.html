@@ -1,0 +1,66 @@
+<main id="main">
+
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h2 class="center">Show Ad Details</h2>
+                <table>
+                   
+                    <tr>
+                        <td rowspan="12" style="width:250px"><img class="card-img-top" [src]="ad.content" alt="Card image cap"></td>
+                        <td>Category: {{ad.categorieads}}</td>    
+                    </tr>
+                    <tr>
+                        <td>Cost: {{ad.cost}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Campaign Start Date: {{ad.startDate}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Campaign End Date: {{ad.endDate}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Nb Views:  {{ad.finalNbViews}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Name:  {{ad.name}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Requested Nb Views:{{ad.requestedNbViews}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Socity Name: {{ad.socityy.name}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Ad Type:  {{ad.typeads}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Created By: {{ad.user.mail}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Add Date:{{ad.adddate}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Last Modified Date: {{ad.modifiedDate}}</td>
+                        
+                    </tr>
+                   
+
+
+                </table>
+            </div>
+            <a [routerLink]="['/admin/ads']" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,86 @@
+<main *ngIf="user" id="main" class="main">
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <div class="container my-4">
+                    <div class="row">
+                      <div class="col-md-4 text-center">
+                        <img [src]="imageSrc" class="img-fluid rounded-circle mb-3" style="width: 200px;">
+                        <h2>{{user.firstName}} {{user.lastName}}</h2>
+                        <p>{{user.role.role}}</p>
+                        <p *ngIf="user.role.role=='STUDENT'" ><strong></strong> {{user.classe}}</p>
+                        <div *ngIf="role=='ADMIN'" class="mb-3">
+                          <form #roleForm="ngForm" (ngSubmit)="updateUserRole(roleForm)">
+                            <div class="row g-3 align-items-center">
+                              <div class="col-auto">
+                                <label class="form-label">Role</label>
+                              </div>
+                              <div class="col-auto">
+                                <select class="form-select" name="r" [(ngModel)]="role1" required>
+                                  <option value="" disabled selected>Change role</option>
+                                  <option *ngFor="let r of roleNames" [value]="r">{{ r }}</option>
+                                </select>
+                              </div>
+                              <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-warning btn-sm" [disabled]="roleForm.invalid">change</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div style="display: flex;">
+                        <h3>Profil Informations</h3>
+                        <a *ngIf="role=='ADMIN'" [routerLink]="['/admin/user/update/', this.user.id]" style="margin-left: 20px;">UPDATE</a>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p><strong>Gender:</strong> {{user.gender}}</p>
+                            <p><strong>Birth Date:</strong> {{user.birthDate | date:'dd/MM/yyyy'}}</p>
+                            <p><strong>Address:</strong> {{user.address}}</p>
+                            <p><strong>CIN:</strong> {{user.cin}}</p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>Email:</strong> {{user.mail}}</p>
+                            <p><strong>Phone:</strong> {{user.phone}}</p>
+                            <div *ngIf="user.role.role=='ADMIN'||user.role.role=='TEACHER'">
+                            <p><strong>Department:</strong> {{user.department}}</p>
+                            <p><strong>Hiring Date:</strong> {{user.hiringDate | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <h3 *ngIf="user.role.role=='ADMIN'||user.role.role=='TEACHER'" >Education</h3>
+                        <h3 *ngIf="user.role.role=='PRE'||user.role.role=='STUDENT'" >Previous Education</h3>
+                        <hr>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p><strong>Level:</strong> {{user.educationLevel}}</p>
+                            <p><strong>Speciality:</strong> {{user.speciality}}</p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>Bac Section:</strong> {{user.bacSection}}</p>
+                          </div>
+                        </div>
+                        <br>
+                        <h3 *ngIf="user.role.role=='ADMIN'||user.role.role=='TEACHER'" >Extra work</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                              <ul class="list-inline">
+                                <li class="list-inline-item" *ngIf="user.evaluator">Evaluator</li>
+                                <li class="list-inline-item" *ngIf="user.jury">Jury</li>
+                                <li class="list-inline-item" *ngIf="user.speaker">Speaker</li>
+                              </ul>
+                            </div>
+                          </div>
+                          
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</main>

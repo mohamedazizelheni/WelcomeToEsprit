@@ -1,0 +1,126 @@
+<main id="main">
+     
+    <div id="about" class="about-area area-padding">
+        <div class="container">
+          <div *ngIf="admissionCandidacy" class="col-md-12 col-sm-12 col-xs-12">
+            <br>
+            <h2 class="center">Show AdmissionCandidacy</h2>
+            
+            <ul *ngIf="admissionCandidacy && interview">
+                <div style="margin-right: 20px">
+                <div style="display: flex; align-items: center;">
+                <li><strong>Reference:</strong>  {{admissionCandidacy.id}}</li>
+                <div *ngIf="user && user?.id==interview?.user?.id && admissionCandidacy.status!='accepted' && admissionCandidacy.status!='rejected'" class="mb-3" style="margin-left: 50px;">
+                  <form #s="ngForm" (ngSubmit)="updateAdmissionCandidacyScore(s)">
+                    <div class="row g-3 align-items-center">
+                      <div class="col-auto">
+                        <input class="form-control" name="r" [(ngModel)]="score" required placeholder="score">
+                      </div>
+                      <div class="col-auto">
+                        <button type="submit" class="btn btn-outline-warning btn-sm" [disabled]="s.invalid">confirm</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div *ngIf="admissionCandidacy.status" [style.background-color]="getStatusColor(admissionCandidacy.status)" style="margin-left: 20px; padding-bottom: 0px; border-radius: 5px; color: white !important;"> <p>{{ admissionCandidacy.status }}</p></div>
+                </div>
+                </div>
+                <li><strong>Bac:</strong> {{admissionCandidacy. bac}}</li>
+                <li *ngIf="admissionCandidacy. bacMoy"><strong>Moyen Of Bac:</strong> {{admissionCandidacy. bacMoy}}</li>
+                <li><strong>Year of Bac:</strong> {{admissionCandidacy. bacYear}}</li>
+                <li><strong>Etablishment Of Bac:</strong> {{admissionCandidacy. bacEstablishment}}</li>
+                <li><strong>Governate Of Bac:</strong> {{admissionCandidacy. bacGovernorate}}</li>
+                <li *ngIf="admissionCandidacy. moy1"><strong>Moyen Of First Year of University :</strong> {{admissionCandidacy. moy1}}</li>
+                <li *ngIf="admissionCandidacy. moy2"><strong>Moyen Of Second Year of University :</strong> {{admissionCandidacy. moy2}}</li>
+                <li *ngIf="admissionCandidacy. moy3"><strong>Moyen Of Third Year of University :</strong> {{admissionCandidacy. moy3}}</li>
+                <li *ngIf="admissionCandidacy. moy4"><strong>Moyen Of Forth Year of University :</strong> {{admissionCandidacy. moy4}}</li>
+                <li><strong>Level:</strong> {{admissionCandidacy. level}}</li>
+                <li><strong>Speciality :</strong> {{admissionCandidacy. speciality}}</li>
+                <li><strong>Documents:</strong></li>
+                
+              </div>
+                <div style="display: flex">
+                    <div>
+                      <li><em>Diploma</em> 
+                        <div *ngIf="admissionCandidacy.docBacDiploma" class="media-container" (click)="toggleFullScreen($event)">
+                          <img [src]="'data:image/jpeg;base64,' + admissionCandidacy.docBacDiploma" alt="CV" class="media">
+                        </div>
+                      </li>
+                    </div>
+                    <div>
+                      <li><em>releveBac</em> 
+                        <div *ngIf="admissionCandidacy. docBacReleve" class="media-container" (click)="toggleFullScreen($event)">
+                          <img [src]="'data:image/jpeg;base64,' + admissionCandidacy. docBacReleve" alt="Diploma" class="media">
+                        </div>
+                      </li>
+                    </div>
+                    <div>
+                      <li *ngIf="admissionCandidacy. docReleve1"><em>Releve1 </em> 
+                        <div class="media-container" (click)="toggleFullScreen($event)">
+                          <img [src]="'data:image/jpeg;base64,' +admissionCandidacy. docReleve1" alt="Letter" class="media" >
+                        </div>
+                      </li>
+                    </div>
+                    <div>
+                        <li *ngIf="admissionCandidacy. docReleve2"><em>Releve2</em> 
+                          <div class="media-container" (click)="toggleFullScreen($event)">
+                            <img [src]="'data:image/jpeg;base64,' +admissionCandidacy. docReleve2" alt="Letter" class="media" >
+                          </div>
+                        </li>
+                      </div>
+                      <div>
+                        <li *ngIf="admissionCandidacy. docReleve3"><em>Releve3</em> 
+                          <div  class="media-container" (click)="toggleFullScreen($event)">
+                            <img [src]="'data:image/jpeg;base64,' +admissionCandidacy. docReleve3" alt="Letter" class="media" >
+                          </div>
+                        </li>
+                      </div>
+                      <div>
+                        <li *ngIf="admissionCandidacy. docReleve4"><em>Releve4</em> 
+                          <div  class="media-container" (click)="toggleFullScreen($event)">
+                            <img [src]="'data:image/jpeg;base64,' +admissionCandidacy. docReleve4" alt="Letter" class="media" >
+                          </div>
+                        </li>
+                      </div>
+                      <div>
+                        <li *ngIf="admissionCandidacy. docDiploma"><em>Diploma</em> 
+                          <div class="media-container" (click)="toggleFullScreen($event)">
+                            <img [src]="'data:image/jpeg;base64,' +admissionCandidacy. docDiploma" alt="Letter" class="media" >
+                          </div>
+                        </li>
+                      </div>
+                     </div>
+                  <div *ngIf="user?.id==admissionCandidacy?.user?.id && !admissionCandidacy.testScore">
+                    <li><button class="btn btn-secondary" [routerLink]="['/takeTest/', admissionCandidacy.id]" style="margin: 0.2cm;" class="btn btn-primary">Test</button></li>
+                  </div>
+                  <div *ngIf="admissionCandidacy?.testScore">
+                    <br><li><b><em>test score: </em> {{admissionCandidacy.testScore}}/20</b></li> <br>
+                  </div>
+                  
+
+                  <div *ngIf=" user && user?.id==admissionCandidacy?.user?.id || (user?.id==interview?.user?.id && role!='ADMIN')">
+                    <button class="btn btn-outline-info" routerLink="/interview/show/{{interview.id}}">show interview details</button>
+                  </div>
+                  <div *ngIf="user && role=='ADMIN'">
+                    <button class="btn btn-outline-info" routerLink="/admin/interview/show/{{interview.id}}">show interview details</button>
+                  </div>
+                  <br>
+                  <div *ngIf="user && user?.id==interview?.user?.id && role!='ADMIN'">
+                    <button class="btn btn-outline-info" routerLink="/user/show/{{admissionCandidacy.user.id}}">show candidate profil</button>
+                  </div>
+                  <div *ngIf="role=='ADMIN'">
+                    <button class="btn btn-outline-info" routerLink="/admin/user/show/{{admissionCandidacy.user.id}}">show candidate profil</button>
+                  </div>
+                  <br>
+                  <div  *ngIf="user?.id==admissionCandidacy?.user?.id || role=='ADMIN'">
+                    <li><button class="btn btn-danger" (click)="deleteAdmissionCandidacy(admissionCandidacy.id)">Delete</button></li>
+                  </div>
+                </ul>
+              </div>
+                
+            </div>
+          </div>
+        </main>
+        
+              

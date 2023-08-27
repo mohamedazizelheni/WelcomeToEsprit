@@ -1,0 +1,46 @@
+<main id="main" class="main">
+
+    <div id="about" class="about-area area-padding">
+      <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <br>
+          <h2 class="center">Add New Question</h2>
+          <form #addForm="ngForm" (ngSubmit)="createQuestion(addForm)">
+            <div class="mb-3">
+              <label class="form-label">Question</label>
+              <input type="text" class="form-control" name="question" ngModel required minlength="2" #question="ngModel" [class.is-invalid]="question.invalid && question.touched">
+              <span style="color: red;" *ngIf="question.touched && question?.errors?.['required']">Question is required</span>
+              <span style="color: red;" *ngIf="question.touched && question?.errors?.['minlength']">Question must be at least 2 characters</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Type</label>
+              <input type="text" class="form-control" name="type" ngModel required #type="ngModel" [class.is-invalid]="type.invalid && type.touched">
+              <span style="color: red;" *ngIf="type.touched && type?.errors?.['required']">Type is required</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">True answer</label>
+              <input type="text" class="form-control" name="true1" ngModel required #true1="ngModel" [class.is-invalid]="true1.invalid && true1.touched">
+              <span style="color: red;" *ngIf="true1.touched && true1?.errors?.['required']">True answer is required</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">False answer 1</label>
+              <input type="text" class="form-control" name="false1" ngModel required #false1="ngModel" [class.is-invalid]="false1.invalid && false1.touched">
+              <span style="color: red;" *ngIf="false1.touched && false1?.errors?.['required']">False answer 1 is required</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">False answer 2</label>
+              <input type="text" class="form-control" name="false2" ngModel required #false2="ngModel" [class.is-invalid]="false2.invalid && false2.touched">
+              <span style="color: red;" *ngIf="false2.touched && false2?.errors?.['required']">False answer 2 is required</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">False answer 3</label>
+              <input type="text" class="form-control" name="false3" ngModel required #false3="ngModel" [class.is-invalid]="false3.invalid && false3.touched">
+              <span style="color: red;" *ngIf="false3.touched && false3?.errors?.['required']">False answer 3 is required</span>
+              <button type="submit" class="btn btn-primary"  [disabled]="addForm.invalid">Submit</button><br><br>
+            </div>
+            </form>
+            </div>
+            </div>
+            </div>
+            </main>
+          
